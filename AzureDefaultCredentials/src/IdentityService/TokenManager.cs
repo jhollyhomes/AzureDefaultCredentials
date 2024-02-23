@@ -12,11 +12,11 @@ public class TokenManager : ITokenManager
         _tokenCredential = tokenCredential;
     }
 
-    public async Task<string> GetBearerToken(string scope, string tenant)
+    public async Task<string> GetBearerToken(string scope)
     {
         try
         {
-            var tokenRequestContext = new TokenRequestContext(new[] { scope }, tenantId: tenant);
+            var tokenRequestContext = new TokenRequestContext(new[] { scope });
             var accessToken = await _tokenCredential.GetTokenAsync(tokenRequestContext, CancellationToken.None);
 
             return accessToken.Token;

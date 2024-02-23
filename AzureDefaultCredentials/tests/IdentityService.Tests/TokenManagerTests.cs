@@ -7,8 +7,7 @@ namespace IdentityService.Tests;
 [TestClass]
 public class TokenManagerTests
 {
-    private const string AZURE_SCOPE = "xxx";
-    private const string TENANT_ID = "xxx";
+    private const string AZURE_SCOPE = "api://ruc.ir.vehicledatamock.test1697790249825";
 
     [TestMethod]
     public async Task GivenVsUser_WhenRequestingToken_TokenReturned()
@@ -22,7 +21,7 @@ public class TokenManagerTests
 
         Assert.IsNotNull(tokenProvider);
 
-        var token = await tokenProvider.GetBearerToken(AZURE_SCOPE, TENANT_ID);
+        var token = await tokenProvider.GetBearerToken(AZURE_SCOPE);
 
         Assert.IsNotNull(token);
     }

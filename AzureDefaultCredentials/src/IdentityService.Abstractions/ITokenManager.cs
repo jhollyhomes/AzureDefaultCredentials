@@ -2,5 +2,5 @@
 
 public interface ITokenManager
 {
-    Task<string> GetBearerToken(string scope, string tenantId);
+    Task<string> GetBearerToken(string scope);
 }
