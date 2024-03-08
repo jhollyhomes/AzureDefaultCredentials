@@ -1,19 +1,25 @@
 using IdentityService.Abstractions;
 using IdentityService.Extensions;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting.Internal;
 
 namespace IdentityService.Tests;
 
 [TestClass]
 public class TokenManagerTests
 {
-    private const string AZURE_SCOPE = "api://ruc.ir.vehicledatamock.test1697790249825";
+    private const string AZURE_SCOPE = "api://endpoint";
 
     [TestMethod]
     public async Task GivenVsUser_WhenRequestingToken_TokenReturned()
     {
+        var hostingEnvironment = new HostingEnvironment
+        {
+            EnvironmentName = "Development"
+        };
+
         var services = new ServiceCollection();
-        services.AddIdentityService();
+        services.AddIdentityService(hostingEnvironment);
 
         var provider = services.BuildServiceProvider();
 
